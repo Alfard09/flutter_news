@@ -141,6 +141,7 @@ class AdminProfilePage extends StatefulWidget {
 
 class _AdminProfilePageState extends State<AdminProfilePage> {
   String? userEmail;
+  String? userName;
 
   @override
   void initState() {
@@ -149,12 +150,27 @@ class _AdminProfilePageState extends State<AdminProfilePage> {
     fetchUserEmail();
   }
 
+  // void fetchUserEmail() async {
+  //   User? user = FirebaseAuth.instance.currentUser;
+  //   if (user != null) {
+  //     setState(() {
+  //       userEmail = user.email;
+  //     });
+  //   }
+  // }
   void fetchUserEmail() async {
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      setState(() {
-        userEmail = user.email;
-      });
+      // Extracting name from email
+      String email = user.email ?? '';
+      int atIndex = email.indexOf('@');
+      if (atIndex != -1) {
+        String name = email.substring(0, atIndex);
+        setState(() {
+          userEmail = email;
+          userName = name;
+        });
+      }
     }
   }
 
@@ -176,11 +192,12 @@ class _AdminProfilePageState extends State<AdminProfilePage> {
             SizedBox(height: 20),
             CircleAvatar(
               radius: 60,
-              backgroundImage: AssetImage('images/admin_avatar.jpg'),
+              backgroundImage: AssetImage('images/avatar.png'),
             ),
             SizedBox(height: 20),
             Text(
-              'John Doe',
+              // 'John Doe',
+              userName ?? 'Loading...',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,

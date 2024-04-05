@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "906657375063",
+    "project_id": "serverlessnewsapp",
+    "storage_bucket": "serverlessnewsapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906657375063:android:bf2bea3428996eeab55412",
+        "android_client_info": {
+          "package_name": "com.example.finalproject2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPGDJti9asrDUEZNGmhZNBqNob2J86d-I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906657375063:android:307e935f723f8f09b55412",
+        "android_client_info": {
+          "package_name": "com.example.flutter_serverless_news"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPGDJti9asrDUEZNGmhZNBqNob2J86d-I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

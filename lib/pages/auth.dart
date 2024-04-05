@@ -1,3 +1,4 @@
+import 'package:finalproject2/pages/bottonnavbar.dart';
 import 'package:finalproject2/pages/home.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart'
@@ -21,7 +22,7 @@ class LoginSignin extends StatelessWidget {
             ],
           );
         }
-        return Home();
+        return BottomNavigation();
       },
     );
   }

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:finalproject2/models/category_models.dart';
 import 'package:finalproject2/models/slider_model.dart';
@@ -8,7 +6,7 @@ import 'package:finalproject2/pages/AdminProfilePage.dart';
 import 'package:finalproject2/services/data.dart';
 import 'package:finalproject2/services/slider_data.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Home extends StatefulWidget {
@@ -58,114 +56,116 @@ class _HomeState extends State<Home> {
           ],
         ),
         body: Container(
-          child: Column(
-            children: [
-              Container(
-                margin: EdgeInsets.only(left: 20.0),
-                height: 70,
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: categories.length,
-                  itemBuilder: (context, index) {
-                    return CategoryTile(
-                      image: categories[index].image,
-                      categoryName: categories[index].categoryName,
-                    );
-                  },
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  margin: EdgeInsets.only(left: 20.0),
+                  height: 70,
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: categories.length,
+                    itemBuilder: (context, index) {
+                      return CategoryTile(
+                        image: categories[index].image,
+                        categoryName: categories[index].categoryName,
+                      );
+                    },
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 30.0,
-              ),
-              Text(
-                "Breaking News",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20.0,
-                    fontFamily: 'Pacifico'),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(2.0),
-                child: CarouselSlider.builder(
-                  itemCount: sliders.length,
-                  itemBuilder: (context, index, realIndex) {
-                    String? res = sliders[index].image;
-                    String? res1 = sliders[index].name;
-                    return buildImage(res!, index, res1!);
-                  },
-                  options: CarouselOptions(
-                      height: 250,
-                      autoPlay: true,
-                      enlargeCenterPage: true,
-                      enlargeStrategy: CenterPageEnlargeStrategy.height,
-                      onPageChanged: (index, reason) {
-                        setState(() {
-                          activeIndex = index;
-                        });
-                      }),
+                SizedBox(
+                  height: 30.0,
                 ),
-              ),
-              SizedBox(
-                height: 30.0,
-              ),
-              Center(child: buildIndicator()),
-              SizedBox(
-                height: 30.0,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Trending News",
-                      style: TextStyle(color: Colors.black),
-                    ),
-                    Text(
-                      "View All",
-                      style: TextStyle(color: Colors.blue),
-                    )
-                  ],
+                Text(
+                  "Breaking News",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20.0,
+                      fontFamily: 'Pacifico'),
                 ),
-              ),
-              SizedBox(
-                height: 10.0,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                        child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: Image.asset(
-                              "images/sports.jpg",
-                              height: 130,
-                              width: 130,
-                              fit: BoxFit.cover,
-                            ))),
-                    SizedBox(
-                      width: 8.0,
-                    ),
-                    Column(
-                      children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width / 2.2,
-                          child: Text(
-                              "Virat Kohli’s slow strike rate against KKR adds fuel to fire",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 16.0)),
-                        ),
-                      ],
-                    )
-                  ],
+                Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: CarouselSlider.builder(
+                    itemCount: sliders.length,
+                    itemBuilder: (context, index, realIndex) {
+                      String? res = sliders[index].image;
+                      String? res1 = sliders[index].name;
+                      return buildImage(res!, index, res1!);
+                    },
+                    options: CarouselOptions(
+                        height: 250,
+                        autoPlay: true,
+                        enlargeCenterPage: true,
+                        enlargeStrategy: CenterPageEnlargeStrategy.height,
+                        onPageChanged: (index, reason) {
+                          setState(() {
+                            activeIndex = index;
+                          });
+                        }),
+                  ),
                 ),
-              )
-            ],
+                SizedBox(
+                  height: 30.0,
+                ),
+                Center(child: buildIndicator()),
+                SizedBox(
+                  height: 30.0,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Trending News",
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      Text(
+                        "View All",
+                        style: TextStyle(color: Colors.blue),
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 10.0,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: Image.asset(
+                                "images/sports.jpg",
+                                height: 130,
+                                width: 130,
+                                fit: BoxFit.cover,
+                              ))),
+                      SizedBox(
+                        width: 8.0,
+                      ),
+                      Column(
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width / 2.2,
+                            child: Text(
+                                "Virat Kohli’s slow strike rate against KKR adds fuel to fire",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 16.0)),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ));
   }
